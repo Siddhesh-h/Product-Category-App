@@ -1,36 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Category Master</title>
-    </head>
-    <body>
-        <h2><%= editCategory ? "Edit Category" : "Add Category" %></h2>
+<%- include('../partials/header', {title: 'Category Master'}) %>
+    <h2><%= editCategory ? "Edit Category" : "Add Category" %></h2>
 
-        <form
-            method="POST"
-            action="<%= editCategory ? '/categories/update/' + editCategory.CategoryId : '/categories/add' %>"
-        >
-            <input
-                type="text"
-                name="CategoryName"
-                placeholder="Category Name"
-                value="<%= editCategory ? editCategory.CategoryName : '' %>"
-                required
-            />
+    <form
+        method="POST"
+        action="<%= editCategory ? '/categories/update/' + editCategory.CategoryId : '/categories/add' %>"
+    >
+        <input
+            type="text"
+            name="CategoryName"
+            placeholder="Category Name"
+            value="<%= editCategory ? editCategory.CategoryName : ''%>"
+            required
+        />
 
-            <button type="submit"><%=editCategory ? "Update" : "Add" %></button>
+        <button class="btn-primary">
+            <%= editCategory ? "Update Category" : "Add Category" %>
+        </button>
 
-            <% if(editCategory) { %>
-                <a href="/categories">Cancel</a>
-            <%}%>
-        </form>
 
-        <hr>
+        <% if(editCategory) { %>
+            <a href="/categories">Cancel</a>
+        <%}%>
+    </form>
 
-        <h2>Category List</h2>
+    <hr>
 
+    <h2>Category List</h2>
+    <div class="table-wrapper">
         <table border="1">
             <tr>
                 <th>ID</th>
@@ -42,9 +38,12 @@
                 <tr>
                     <td><%= cat.CategoryId %></td>
                     <td><%= cat.CategoryName %></td>
-                    <td><a href="/categories/edit/<%= cat.CategoryId %>">Edit</a>|<a href="/categories/delete/<%= cat.CategoryId%>" onclick="return confirm('Are you sure?')">Delete</a></td>
+                    <td>
+                        <a href="/categories/edit/<%= cat.CategoryId %>">Edit</a>|
+                        <a class="btn-danger" href="/categories/delete/<%= cat.CategoryId %>" onclick="return confirm('Delete this category?')">Delete</a>
+                    </td>
                 </tr>
             <% }) %>
         </table>
-    </body>
-</html>
+    </div>
+<%- include('../partials/footer') %>
