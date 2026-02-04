@@ -96,7 +96,7 @@ Example:
 1. Clone the repository
 
 ```bash
-git clone <your-github-repo-url>
+git clone https://github.com/Siddhesh-h/Product-Category-App.git
 cd product-category-app
 ```
 
