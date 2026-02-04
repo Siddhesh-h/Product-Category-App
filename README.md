@@ -154,7 +154,16 @@ npm  install
 
 4. Configure DB credentials
 
-Update src/config.db.js
+Create a `.env` file in the project root with the following values:
+
+```bash
+DB_HOST=localhost
+DB_USER=your_mysql_username
+DB_PASSWORD=your_mysql_password
+DB_NAME=product_app
+```
+
+Update src/config/db.js
 
 5. Start server
 
