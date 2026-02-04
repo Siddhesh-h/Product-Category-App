@@ -1,7 +1,7 @@
 # Product & Category Management System
 
-A Node.js + Express + EJS application built as part of a technical assignment.
-The project demonstrates CRUD operations, relational database usage (RDBMS),
+A Node.js + Express + EJS application built as part of a technical assignment,
+demonstrating CRUD operations, relational database usage (RDBMS),
 and server-side pagination.
 
 ---
@@ -9,33 +9,58 @@ and server-side pagination.
 ## Tech Stack
 
 - Node.js (v18 LTS)
+
 - Express.js
+
 - EJS
+
 - MySQL (RDBMS)
+
 - mysql2
 
 ---
 
 ## Project Structure
 
+```
 product-category-app/
 ├── src/
-│ ├── app.js
-│ ├── config/db.js
-│ ├── controllers/
-│ │ ├── category.controller.js
-│ │ └── product.controller.js
-│ ├── routes/
-│ │ ├── category.routes.js
-│ │ └── product.routes.js
-│ ├── views/
-│ │ ├── categories/index.ejs
-│ │ └── products/index.ejs
-│ └── public/
-├── sql/database.sql
+│   ├── app.js
+│   │
+│   ├── config/
+│   │   └── db.js
+│   │
+│   ├── controllers/
+│   │   ├── category.controller.js
+│   │   └── product.controller.js
+│   │
+│   ├── routes/
+│   │   ├── category.routes.js
+│   │   └── product.routes.js
+│   │
+│   ├── views/
+│   │   ├── categories/
+│   │   │   └── index.ejs
+│   │   │
+│   │   ├── products/
+│   │   │   └── index.ejs
+│   │   │
+│   │   └── partials/
+│   │       ├── header.ejs
+│   │       └── footer.ejs
+│   │
+│   └── public/
+│       └── css/
+│           └── style.css
+│
+├── sql/
+│   └── database.sql
+│
 ├── server.js
 ├── package.json
+├── package-lock.json
 └── README.md
+```
 
 ---
 
@@ -44,15 +69,19 @@ product-category-app/
 ### Categories
 
 - CategoryId (PK)
+
 - CategoryName
 
 ### Products
 
 - ProductId (PK)
+
 - ProductName
+
 - CategoryId (FK → Categories)
 
-Relationship:  
+Relationship:
+
 One Category → Many Products
 
 ---
@@ -66,11 +95,13 @@ One Category → Many Products
 ### Product Master (Full CRUD)
 
 - Add, List, Edit, Delete products
+
 - Product mapped to Category
 
 ### Product Listing
 
 - Displays ProductId, ProductName, CategoryId, CategoryName
+
 - Uses SQL JOIN
 
 ---
@@ -80,13 +111,17 @@ One Category → Many Products
 Pagination is implemented at database level using `LIMIT` and `OFFSET`.
 
 Formula:
+
 OFFSET = (pageNumber - 1) \* pageSize
 
 Example:
 
 - Page size: 10
+
 - Page: 9
+
 - OFFSET: 80
+
 - Records fetched: 81–90
 
 ---
@@ -96,14 +131,19 @@ Example:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/Siddhesh-h/Product-Category-App.git
-cd product-category-app
+
+git  clone  https://github.com/Siddhesh-h/Product-Category-App.git
+
+cd  product-category-app
+
 ```
 
 2. Install dependencies
 
 ```bash
-npm install
+
+npm  install
+
 ```
 
 3. Setup database
@@ -119,9 +159,15 @@ Update src/config.db.js
 5. Start server
 
 ```bash
-node server.js
+
+node  server.js
+
 ```
 
 6. Open in browser
-   http://localhost:3000/categories
-   http://localhost:3000/products
+
+```bash
+http://localhost:3000/categories
+
+http://localhost:3000/products
+```
