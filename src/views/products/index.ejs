@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Master</title>
+</head>
+<body>
+
+<h2><%= editProduct ? "Edit Product" : "Add Product" %></h2>
+
+<form method="POST"
+  action="<%= editProduct ? '/products/update/' + editProduct.ProductId : '/products/add' %>">
+
+  <input
+    name="ProductName"
+    placeholder="Product Name"
+    value="<%= editProduct ? editProduct.ProductName : '' %>"
+    required
+  />
+
+  <select name="CategoryId" required>
+    <% categories.forEach(cat => { %>
+      <option value="<%= cat.CategoryId %>"
+        <%= editProduct && editProduct.CategoryId == cat.CategoryId ? 'selected' : '' %>>
+        <%= cat.CategoryName %>
+      </option>
+    <% }) %>
+  </select>
+
+  <button type="submit">
+    <%= editProduct ? "Update" : "Add" %>
+  </button>
+
+  <% if (editProduct) { %>
+    <a href="/products">Cancel</a>
+  <% } %>
+</form>
+
+<hr>
+
+<h2>Product List</h2>
+
+<table border="1">
+  <tr>
+    <th>ProductId</th>
+    <th>ProductName</th>
+    <th>CategoryId</th>
+    <th>CategoryName</th>
+    <th>Actions</th>
+  </tr>
+
+  <% products.forEach(p => { %>
+    <tr>
+      <td><%= p.ProductId %></td>
+      <td><%= p.ProductName %></td>
+      <td><%= p.CategoryId %></td>
+      <td><%= p.CategoryName %></td>
+      <td>
+        <a href="/products/edit/<%= p.ProductId %>">Edit</a> |
+        <a href="/products/delete/<%= p.ProductId %>"
+           onclick="return confirm('Delete?')">Delete</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<div>
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a href="/products?page=<%= i %>"><%= i %></a>
+  <% } %>
+</div>
+
+</body>
+</html>
