@@ -1,7 +1,9 @@
 # Product & Category Management System
 
 A Node.js + Express + EJS application built as part of a technical assignment,
+
 demonstrating CRUD operations, relational database usage (RDBMS),
+
 and server-side pagination.
 
 ---
@@ -23,43 +25,81 @@ and server-side pagination.
 ## Project Structure
 
 ```
+
 product-category-app/
+
 ├── src/
-│   ├── app.js
-│   │
-│   ├── config/
-│   │   └── db.js
-│   │
-│   ├── controllers/
-│   │   ├── category.controller.js
-│   │   └── product.controller.js
-│   │
-│   ├── routes/
-│   │   ├── category.routes.js
-│   │   └── product.routes.js
-│   │
-│   ├── views/
-│   │   ├── categories/
-│   │   │   └── index.ejs
-│   │   │
-│   │   ├── products/
-│   │   │   └── index.ejs
-│   │   │
-│   │   └── partials/
-│   │       ├── header.ejs
-│   │       └── footer.ejs
-│   │
-│   └── public/
-│       └── css/
-│           └── style.css
+
+│ ├── app.js
+
+│ │
+
+│ ├── config/
+
+│ │ └── db.js
+
+│ │
+
+│ ├── controllers/
+
+│ │ ├── category.controller.js
+
+│ │ └── product.controller.js
+
+│ │
+
+│ ├── routes/
+
+│ │ ├── category.routes.js
+
+│ │ └── product.routes.js
+
+│ │
+
+│ ├── views/
+
+│ │ ├── categories/
+
+│ │ │ └── index.ejs
+
+│ │ │
+
+│ │ ├── products/
+
+│ │ │ └── index.ejs
+
+│ │ │
+
+│ │ └── partials/
+
+│ │ ├── header.ejs
+
+│ │ └── footer.ejs
+
+│ │
+
+│ └── public/
+
+│ └── css/
+
+│ └── style.css
+
 │
+
 ├── sql/
-│   └── database.sql
+
+│ └── database.sql
+
 │
+
 ├── server.js
+
 ├── package.json
+
 ├── package-lock.json
+
 └── README.md
+
 ```
 
 ---
@@ -157,10 +197,15 @@ npm  install
 Create a `.env` file in the project root with the following values:
 
 ```bash
+
 DB_HOST=localhost
+
 DB_USER=your_mysql_username
+
 DB_PASSWORD=your_mysql_password
+
 DB_NAME=product_app
+
 ```
 
 Update src/config/db.js
@@ -168,9 +213,7 @@ Update src/config/db.js
 5. Start server
 
 ```bash
-
 node  server.js
-
 ```
 
 6. Open in browser
@@ -180,3 +223,24 @@ http://localhost:3000/categories
 
 http://localhost:3000/products
 ```
+
+7. Run with Docker (Recommended)
+
+- Build and start containers:
+    ```bash
+    docker compose up --build
+    ```
+- Access application:
+
+    ```bash
+    http://localhost:3000
+    ```
+
+    The MySQL database runs inside Docker and is automatically initialized using the provided SQL script.
+
+    No manual database setup is required when using Docker.
+
+- Stop containers:
+    ```bash
+    docker compose down
+    ```

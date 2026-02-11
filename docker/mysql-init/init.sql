@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS product_app;
+USE product_app;
+
+CREATE TABLE IF NOT EXISTS Categories (
+  CategoryId INT AUTO_INCREMENT PRIMARY KEY,
+  CategoryName VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Products (
+  ProductId INT AUTO_INCREMENT PRIMARY KEY,
+  ProductName VARCHAR(100) NOT NULL,
+  CategoryId INT NOT NULL,
+  CONSTRAINT fk_category
+    FOREIGN KEY (CategoryId)
+    REFERENCES Categories(CategoryId)
+    ON DELETE RESTRICT
+);

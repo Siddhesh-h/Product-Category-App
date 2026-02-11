@@ -1,19 +1,31 @@
 require("dotenv").config();
 const mysql = require("mysql2");
 
-const db = mysql.createConnection({
-    host: process.env.DB_Host,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-});
+const dbConfig = {
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD || "",
+    database: process.env.DB_NAME || "product_app",
+};
 
-db.connect((err) => {
-    if (err) {
-        console.error("MYQL connection failed:", err.message);
-        return;
-    }
-    console.log("MySQL Connected");
-});
+let connection;
 
-module.exports = db;
+function connectWithRetry() {
+    connection = mysql.createConnection(dbConfig);
+
+    console.log("Connecting to MySQL...");
+
+    connection.connect((err) => {
+        if (err) {
+            setTimeout(connectWithRetry, 3000); // silent retry
+        } else {
+            console.log("MySQL connected successfully");
+        }
+    });
+}
+
+connectWithRetry();
+
+module.exports = {
+    getConnection: () => connection,
+};
